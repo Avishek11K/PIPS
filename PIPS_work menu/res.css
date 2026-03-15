@@ -1,0 +1,84 @@
+/* Container responsiveness */
+body {
+    font-family:Segoe UI;
+    background:#f0f2f5;
+    padding:10px;
+    margin:0;
+}
+
+.container {
+    background:#fff;
+    padding:15px;
+    margin-bottom:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    overflow-x:auto; /* allow horizontal scroll on small screens */
+}
+
+/* Tables */
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th, td {
+    padding:8px;
+    border:1px solid #ccc;
+    text-align:center;
+    font-size:14px;
+}
+
+/* Responsive table: stack cells vertically on small screens */
+@media only screen and (max-width:768px){
+    table, thead, tbody, th, td, tr {
+        display:block;
+    }
+    thead tr {
+        display:none; /* hide header */
+    }
+    tr {
+        margin-bottom:15px;
+        border-bottom:2px solid #ddd;
+    }
+    td {
+        text-align:right;
+        padding-left:50%;
+        position:relative;
+    }
+    td::before {
+        content: attr(data-label); /* add label before each value */
+        position:absolute;
+        left:10px;
+        width:45%;
+        padding-left:5px;
+        font-weight:bold;
+        text-align:left;
+    }
+}
+
+/* Status labels */
+.status-noted { color:#ff9800; font-weight:bold; }
+.status-purchased { color:#4CAF50; font-weight:bold; }
+
+/* Buttons */
+.log {
+    float:right;
+    background:#1b5e20;
+    color:white;
+    padding:10px 25px;
+    margin-top:15px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* Count links */
+.count-links a {
+    margin-right:10px;
+    text-decoration:none;
+    font-weight:bold;
+    color:#1b5e20;
+}
+
+/* Headings */
+h1, h2 { word-wrap:break-word; }
