@@ -29,6 +29,7 @@ while($row = mysqli_fetch_assoc($result)){
     $groups[$time][] = $row;
 }
 ?>
+echo"Hello Avishek";
 
 
 <!DOCTYPE html>
