@@ -1,119 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Avishek | Explorer</title>
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-        .card {
-            background: white;
-            padding: 40px 60px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+      .card {
+        background: white;
+        padding: 40px 60px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid black;
-            margin-bottom: 15px;
-        }
+      /* added role  */
 
-        h1 {
-            margin: 0;
-            font-size: 28px;
-            color: #333;
-        }
+      #role {
+        font-size: 20px;
+        font-weight: 600;
+        color: #2575fc;
+        min-height: 28px;
+        margin-top: 8px;
+      }
 
-        p {
-            margin-top: 10px;
-            color: #666;
-        }
+      #role::after {
+        content: "|";
+        animation: blink 1s infinite;
+      }
 
-        .btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            background: #2575fc;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+      /* role added ends here */
 
-        .btn:hover {
-            background: #1a5edb;
-        }
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid black;
+        margin-bottom: 15px;
+      }
 
-        /* 🔥 Cursor Effect */
-        #title::after, #desc::after {
-            content: "|";
-            animation: blink 1s infinite;
-        }
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        color: #333;
+      }
 
-        @keyframes blink {
-            0% {opacity: 1;}
-            50% {opacity: 0;}
-            100% {opacity: 1;}
+      p {
+        margin-top: 10px;
+        color: #666;
+      }
+
+      .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        background: #2575fc;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #1a5edb;
+      }
+
+      /* 🔥 Cursor Effect */
+      #title::after,
+      #desc::after {
+        content: "|";
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
         }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="card">
+      <img
+        src="C:\xampp\htdocs\PIPS_Mini-Project\PIPS_work menu\images\image.jpg"
+        alt="AVISHEK"
+        class="profile-img"
+      />
 
-        <img src="C:\xampp\htdocs\PIPS_Mini-Project\PIPS_work menu\images\image.jpg"
-        alt="AVISHEK" class="profile-img">
+      <!-- 🔥 Typing Text -->
+      <h1 id="title"></h1>
+      <!-- added div for the role -->
+      <div id="role"></div>
+      <!-- added div role end here -->
+      <p id="desc"></p>
 
-        <!-- 🔥 Typing Text -->
-        <h1 id="title"></h1>
-        <p id="desc"></p>
-
-        <button class="btn">Explore More</button>
+      <button class="btn">Explore More</button>
     </div>
 
     <script>
-        const titleText = "An Explorer Avishek";
-        const descText = "Will be there after some months to hustle all my intuition, experience together";
+      const titleText = "An Explorer Avishek";
+      const descText =
+        "Will be there after some months to hustle all my intuition, experience together";
 
-        let i = 0;
-        let j = 0;
+      let i = 0;
+      let j = 0;
 
-        function typeTitle() {
-            if (i < titleText.length) {
-                document.getElementById("title").innerHTML += titleText.charAt(i);
-                i++;
-                setTimeout(typeTitle, 80);
-            } else {
-                setTimeout(typeDesc, 300);
+      function typeTitle() {
+        if (i < titleText.length) {
+          document.getElementById("title").innerHTML += titleText.charAt(i);
+          i++;
+          setTimeout(typeTitle, 80);
+        } else {
+          setTimeout(typeDesc, 300);
+        }
+      }
+
+      function typeDesc() {
+        if (j < descText.length) {
+          document.getElementById("desc").innerHTML += descText.charAt(j);
+          j++;
+          setTimeout(typeDesc, 40);
+        }
+      }
+
+      window.onload = typeTitle;
+
+      // added for the role transition effect
+      const roles = ["Explorer", "Junior Developer", "Singer", "Songwriter"];
+
+      function startRoleRotation() {
+        const roleEl = document.getElementById("role");
+        let roleIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        const typeSpeed = 90;
+        const deleteSpeed = 45;
+        const pauseAfterType = 1200;
+        const pauseAfterDelete = 300;
+
+        function tick() {
+          const currentRole = roles[roleIndex];
+
+          if (!deleting) {
+            charIndex++;
+            roleEl.textContent = currentRole.substring(0, charIndex);
+
+            if (charIndex === currentRole.length) {
+              deleting = true;
+              setTimeout(tick, pauseAfterType);
+              return;
             }
+            setTimeout(tick, typeSpeed);
+          } else {
+            charIndex--;
+            roleEl.textContent = currentRole.substring(0, charIndex);
+
+            if (charIndex === 0) {
+              deleting = false;
+              roleIndex = (roleIndex + 1) % roles.length;
+              setTimeout(tick, pauseAfterDelete);
+              return;
+            }
+            setTimeout(tick, deleteSpeed);
+          }
         }
 
-        function typeDesc() {
-            if (j < descText.length) {
-                document.getElementById("desc").innerHTML += descText.charAt(j);
-                j++;
-                setTimeout(typeDesc, 40);
-            }
-        }
+        tick();
+      }
 
-        window.onload = typeTitle;
+      // Call this whenever you want the rotation to start, e.g.:
+      startRoleRotation();
+
+      // role transition effect ends here
     </script>
-
-</body>
+  </body>
 </html>
